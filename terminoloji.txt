@@ -1,0 +1,7 @@
+phpMyAdmin -> MySQL'i yöneten yaygın web tabanlı sistem (SQL Server Managment'ın alternatifi)
+
+
+??
+yetkilendirmeleri anlat
+db bağlantı konusunu öğren
+docker'ı anlat, xampp anlat, ftp aç oraya yükle, ftp programı öner

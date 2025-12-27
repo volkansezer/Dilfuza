@@ -1,0 +1,48 @@
+services:
+
+  php:
+    container_name: PHP
+    restart: always
+    #build: .
+    
+    image: volkansezer/phpmysqli  # kurulumdan sonra Terminalde aç docker-php-ext-install mysqli komutunu çalıştır
+    #image: php:8.2-apache
+    #command: docker-php-ext-install mysqli
+
+    volumes:
+      - "./php/:/var/www/html" # sync the current dir on local machine to the dir of container
+    ports:
+      - 3333:80
+
+  mysql:
+    container_name: MySQL
+    image: mysql:8.3
+    #command: --default-authentication-plugin=mysql_native_password
+    #command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    restart: always #always, no, on-failure, unless-stopped
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: hastaneotomasyon
+      MYSQL_USER: admindilfuza
+      MYSQL_PASSWORD: dilfuzakarimova
+      MYSQL_ROOT_PASSWORD: dilfuzakarimova
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    container_name: PHPMyAdmin
+    image: phpmyadmin:5.2
+    restart: always
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - 8090:80
+    environment:
+      PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 300M
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: dilfuzakarimova
