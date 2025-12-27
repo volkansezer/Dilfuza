@@ -1,25 +1,4 @@
-<?PHP
-	session_start(); ob_start();
 
-	// veri tabanı bağlantı bilgilerini tanımlıyoruz
-	$DbHost		= "mysql";
-	$DbUser		= "admindilfuza";
-	$DbPass		= "dilfuzakarimova";
-	$DbName		= "hastaneotomasyon";
-
-	//vertabanına bağlanıyoruz
-	$mysqli = new mysqli($DbHost, $DbUser, $DbPass, $DbName);
-
-	//bağlantı kurulamazsa hata dönüyoruz
-	if($mysqli->connect_errno){
-		printf("Bağlantı Hatası: %s\n", $mysqli->connect_error);
-		exit();
-	}
-	
-	//bağlantı sağlandı, dil formatını UTF8 olarak tanımlıyoruz
-	mysqli_query($mysqli ,"SET NAMES UTF8");	
-
-?>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -60,10 +39,7 @@
 
 	<hr>
 
-	<?PHP if(isset($_SESSION['alert'])){?>
-	<div class="alert alert-success" role="alert"> <?=$_SESSION['alert'];?> </div>
-	<?PHP unset($_SESSION['alert']); } ?>
-
+	
 	<h2>DOKTORLAR</h2>
 	<hr>
 
@@ -92,22 +68,106 @@
 			</tr>
 		</thead>
 		<tbody>
-<?PHP
-$myQuery = "select id, name, mail, phone, description, status, createdtime from doctor";
-$result = $mysqli->query($myQuery);
-?>
 
-<?PHP while($rs = mysqli_fetch_array($result)){?>
 			<tr>
-				<th scope="row"><?=$rs['id'];?></th>
-				<td><a href="doktor.php?id=<?=$rs['id'];?>"><?PHP echo $rs['name'];?></a></td>
-				<td><?=$rs['mail'];?></td>
-				<td><?=$rs['phone'];?></td>
-				<td><?=$rs['description'];?></td>
-				<td><?=$rs['status'];?></td>
-				<td><?=$rs['createdtime'];?></td>
+				<th scope="row">1</th>
+				<td><a href="doktor.php?id=1">Volkan Sezer</a></td>
+				<td>volkan@sezer.com</td>
+				<td>1234567</td>
+				<td>açıklama</td>
+				<td>1</td>
+				<td>2025-12-27 16:22:41</td>
 			</tr>
-<?PHP } ?>
+			<tr>
+				<th scope="row">2</th>
+				<td><a href="doktor.php?id=2">Malahat Karimova</a></td>
+				<td>malahat@karimova.com</td>
+				<td>1234567</td>
+				<td>çok iyi kalpli bir kadın</td>
+				<td>1</td>
+				<td>2025-12-27 16:31:16</td>
+			</tr>
+			<tr>
+				<th scope="row">3</th>
+				<td><a href="doktor.php?id=3">Bahram Karimova</a></td>
+				<td>bahram@karimova.com</td>
+				<td>05335335456789</td>
+				<td>açıklama</td>
+				<td>1</td>
+				<td>2025-12-27 16:32:51</td>
+			</tr>
+			<tr>
+				<th scope="row">4</th>
+				<td><a href="doktor.php?id=4">Dilfuza Karimova</a></td>
+				<td>dilfuza@karimova.com</td>
+				<td>1234567</td>
+				<td>çok iyi bir doktor</td>
+				<td>1</td>
+				<td>2025-12-27 16:35:57</td>
+			</tr>
+			<tr>
+				<th scope="row">5</th>
+				<td><a href="doktor.php?id=5">daha eski doktor</a></td>
+				<td>doktor@doktor</td>
+				<td>12345678</td>
+				<td>234234234</td>
+				<td>1</td>
+				<td>2025-12-27 16:37:54</td>
+			</tr>
+			<tr>
+				<th scope="row">11</th>
+				<td><a href="doktor.php?id=11">bide</a></td>
+				<td>bide</td>
+				<td>123</td>
+				<td>123</td>
+				<td>1</td>
+				<td>2025-12-27 19:17:56</td>
+			</tr>
+			<tr>
+				<th scope="row">7</th>
+				<td><a href="doktor.php?id=7">test2</a></td>
+				<td>test2</td>
+				<td>test1</td>
+				<td>test1</td>
+				<td>1</td>
+				<td>2025-12-27 16:53:05</td>
+			</tr>
+			<tr>
+				<th scope="row">8</th>
+				<td><a href="doktor.php?id=8">test3</a></td>
+				<td>test3</td>
+				<td>test1</td>
+				<td>test1</td>
+				<td>1</td>
+				<td>2025-12-27 16:57:02</td>
+			</tr>
+			<tr>
+				<th scope="row">9</th>
+				<td><a href="doktor.php?id=9">my doctor</a></td>
+				<td>my@doctor.com</td>
+				<td>123456</td>
+				<td></td>
+				<td>1</td>
+				<td>2025-12-27 18:12:21</td>
+			</tr>
+			<tr>
+				<th scope="row">12</th>
+				<td><a href="doktor.php?id=12">Hemen Deneyelim</a></td>
+				<td>hemen</td>
+				<td>asd</td>
+				<td>asd</td>
+				<td>1</td>
+				<td>2025-12-27 19:22:21</td>
+			</tr>
+			<tr>
+				<th scope="row">13</th>
+				<td><a href="doktor.php?id=13">sorun değil</a></td>
+				<td>sorun</td>
+				<td>asd</td>
+				<td>asd</td>
+				<td>1</td>
+				<td>2025-12-27 19:23:16</td>
+			</tr>
 
 		</tbody>
 	</table>

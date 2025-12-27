@@ -1,37 +1,4 @@
-<?PHP
-	session_start(); ob_start();
 
-	// veri tabanı bağlantı bilgilerini tanımlıyoruz
-	$DbHost		= "mysql";
-	$DbUser		= "admindilfuza";
-	$DbPass		= "dilfuzakarimova";
-	$DbName		= "hastaneotomasyon";
-
-	//vertabanına bağlanıyoruz
-	$mysqli = new mysqli($DbHost, $DbUser, $DbPass, $DbName);
-
-	//bağlantı kurulamazsa hata dönüyoruz
-	if($mysqli->connect_errno){
-		printf("Bağlantı Hatası: %s\n", $mysqli->connect_error);
-		exit();
-	}
-	
-	//bağlantı sağlandı, dil formatını UTF8 olarak tanımlıyoruz
-	mysqli_query($mysqli ,"SET NAMES UTF8");	
-
-
- $id = $_GET['id'];
-
-
- $myQuery = "SELECT * FROM `doctor` WHERE id='$id'";
-
- $result = $mysqli->query($myQuery);
-
- $doctor = mysqli_fetch_assoc($result);
-
- 
-
-?>
 
 
 
@@ -75,10 +42,7 @@
 
     <hr>
 
-    <?PHP if(isset($_SESSION['alert'])){?>
-	<div class="alert alert-success" role="alert"> <?=$_SESSION['alert'];?> </div>
-	<?PHP unset($_SESSION['alert']); } ?>
-
+    
     <hr>
 
 <style>
@@ -102,23 +66,22 @@ color: #999;
                 <div class="row">
  
                     <div class="col-sm-6 col-md-8">
-                        <h4><?=$doctor['name'];?></h4>
-                        <small><cite title="San Francisco, USA"><?=$doctor['description'];?> <i class="glyphicon glyphicon-map-marker">
+                        <h4>Malahat Karimova</h4>
+                        <small><cite title="San Francisco, USA">çok iyi kalpli bir kadın <i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i><?=$doctor['mail'];?>
-                            <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="tel:<?=$doctor['phone'];?>"><?=$doctor['phone'];?></a>
+                            <i class="glyphicon glyphicon-envelope"></i>malahat@karimova.com                            <br />
+                            <i class="glyphicon glyphicon-globe"></i><a href="tel:1234567">1234567</a>
                             <br />
                             <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
                         <!-- Split button -->
 
-                        <form action="actions.php" method="post" onsubmit="return confirm('Doktor <?=$doctor['name'];?> kaydını silmek istediğinize emin misiniz?');">
+                        <form action="actions.php" method="post" onsubmit="return confirm('Doktor Malahat Karimova kaydını silmek istediğinize emin misiniz?');">
                          <div class="btn-group">
                             <button type="submit" class="btn btn-danger">SİL</button>                           
                         </div>
                         <input type="hidden" name="action" value="deletedoctor">
-                        <input type="hidden" name="id" value="<?= $doctor['id'];?>">
+                        <input type="hidden" name="id" value="2">
                         </form>
                        
                     </div>
@@ -134,14 +97,14 @@ color: #999;
 
 
 <form action="actions.php" method="post">
-    <input type="text" name="doctorname" id="doctorname" require placeholder="Doktor ismi..." value="<?=$doctor['name'];?>" ><br>
-    <input type="mail" name="doctormail" id="doctormail" require placeholder="Doktor e-posta..." value="<?=$doctor['mail'];?>" ><br>
-    <input type="password" name="password" id="password" require placeholder="Doktor parola..." value="<?=$doctor['password'];?>" ><br> <!-- parola hassasiyetini şimdilik görmezden geliyoruz  -->
-    <input type="phone" name="phone" id="phone" require placeholder="Doktor telefon..." value="<?=$doctor['phone'];?>" ><br>
-    <input type="text" name="description" id="description" require placeholder="Doktor hakkında..." value="<?=$doctor['description'];?>" ><br>
+    <input type="text" name="doctorname" id="doctorname" require placeholder="Doktor ismi..." value="Malahat Karimova" ><br>
+    <input type="mail" name="doctormail" id="doctormail" require placeholder="Doktor e-posta..." value="malahat@karimova.com" ><br>
+    <input type="password" name="password" id="password" require placeholder="Doktor parola..." value="12345" ><br> <!-- parola hassasiyetini şimdilik görmezden geliyoruz  -->
+    <input type="phone" name="phone" id="phone" require placeholder="Doktor telefon..." value="1234567" ><br>
+    <input type="text" name="description" id="description" require placeholder="Doktor hakkında..." value="çok iyi kalpli bir kadın" ><br>
     <button type="submit" class="btn btn-primary">DÜZENLE</button>                    
     <input type="hidden" name="action" value="editdoctor">
-    <input type="hidden" name="id" value="<?= $doctor['id'];?>">
+    <input type="hidden" name="id" value="2">
 </form>
 
 
