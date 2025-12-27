@@ -1,29 +1,17 @@
 <?PHP
 	ob_start();
 
-	// veri tabanı bağlantı bilgilerini tanımlıyoruz
-	$DbHost		= "mysql";
-	$DbUser		= "admindilfuza";
-	$DbPass		= "dilfuzakarimova";
-	$DbName		= "hastaneotomasyon";
 
-	//vertabanına bağlanıyoruz
-	$mysqli = new mysqli($DbHost, $DbUser, $DbPass, $DbName);
+	$tarih = new DateTime();
 
-	//bağlantı kurulamazsa hata dönüyoruz
-	if($mysqli->connect_errno){
-		printf("Bağlantı Hatası: %s\n", $mysqli->connect_error);
-		exit();
+	echo "Önümüzdeki 20 Gün:\n";
+
+	for ($i = 0; $i <= 20; $i++) {
+		// Her döngüde tarihe 1 gün ekle
+		$tarih->modify('+1 day');
+		
+		// İstediğin formatta ekrana yazdır (Gün.Ay.Yıl)
+		echo $i . ". Gün: " . $tarih->format('d.m.Y') . "\n";
 	}
-
-
-    $myQuery = "SELECT `id`, `name`, `mail`, `phone`, `description` FROM `doctor`";
-
-
-    $sql = $mysqli->query($myQuery);
-
-    while($rs = mysqli_fetch_array($sql)){
-        echo $rs['name'].'<br>';
-    }
 
 ?>

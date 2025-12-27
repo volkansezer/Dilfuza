@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `specialization` (
 	`id`			INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`specialization`	VARCHAR(50) NOT NULL,	
 	`description`	VARCHAR(200) NULL,
-	`status`		TINYINT NOT NULL,	
+	`status`		TINYINT NOT NULL,
 	`createdtime`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	UNIQUE (specialization)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `doctor` ( -- eğer daha önce tanımlanmamışsa "do
 	`password`		VARCHAR(50) NOT NULL,
 	`phone`			VARCHAR(50) NULL,
 	`description`	VARCHAR(200) NULL,
-	`status`		TINYINT NOT NULL,	
+	`status`		TINYINT NOT NULL,
 	`createdtime`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), -- kayıt ne zaman eklenirse otomatik tarih girecek
 	UNIQUE (mail) -- aynı mail ile tekrar kayıt girilmesin
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -39,3 +39,12 @@ CREATE TABLE IF NOT EXISTS `patient` (
 	UNIQUE (mail)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+CREATE TABLE IF NOT EXISTS `timeslots` (
+	`id`			BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- daha fazla veri olacağı için bigint yaptık
+	`doctor`		INT NOT NULL,
+	`slottime`		DATETIME NOT NULL,
+	`status`		TINYINT NOT NULL, -- 0-slot açmadı, 1-slot açtı, 2-slot dolu
+	`createdtime`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	UNIQUE (`doctor`,`time`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

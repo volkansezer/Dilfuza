@@ -108,4 +108,17 @@
 	}
 
 
+	if($action=="setslot"){
+
+		$slotstatus = $_POST['slotstatus'] ?? false;
+		$slottime = $_POST['slottime'];
+
+		echo $slottime.'>'.$slotstatus;
+
+		exit;
+
+	}
+
+
+
 ?>
