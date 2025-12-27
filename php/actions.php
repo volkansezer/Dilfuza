@@ -1,5 +1,5 @@
 <?PHP
-	ob_start();
+	session_start(); ob_start();
 
 	// veri tabanı bağlantı bilgilerini tanımlıyoruz
 	$DbHost		= "mysql";
@@ -38,14 +38,19 @@
 		$phone = $_POST['phone'];
 		$description = $_POST['description'];
 
-		echo $doctorname.' > '.$doctormail.' > '.$password.' > '.$phone.' > '.$desc;
+		echo $doctorname.' > '.$doctormail.' > '.$password.' > '.$phone.' > '.$description;
 
 		$result = $mysqli->query("INSERT INTO `doctor` (`name`, `mail`, `password`, `phone`, `description`, `status`)
-						VALUES ('$doctorname', '$doctormail', '$password', '$phone', '$desc', '1');");
+						VALUES ('$doctorname', '$doctormail', '$password', '$phone', '$description', '1');");
 
 		if($result){
 			//echo 'Tebrikler eklendi';
-			header("Location:index.php");
+
+			$id = $mysqli->insert_id;
+
+			$_SESSION['alert'] = "Doktor <b>" . $doctorname . "</b> başarıyla eklendi";
+
+			header("Location:doktor.php?id=$id");
 			exit;
 		}else{
 			echo 'Bir hata oluştu! '.$mysql->error;
@@ -57,7 +62,48 @@
 
 	if($action=="editdoctor"){
 
-		echo 'doktor düzenlenecek';
+		echo 'doktor düzenlenecek<hr>';
+
+		$id = $_POST['id'];
+		$doctorname = $_POST['doctorname'];
+		$doctormail = $_POST['doctormail'];
+		$password = $_POST['password'];
+		$phone = $_POST['phone'];
+		$description = $_POST['description'];
+
+		echo $doctorname.' > '.$doctormail.' > '.$password.' > '.$phone.' > '.$description;
+
+		$myQuery = "UPDATE `doctor` SET
+						`name` = '$doctorname',
+						`mail` = '$doctormail',
+						`password` = '$password',
+						`phone` = '$phone',
+						`description` = '$description'
+					WHERE `id` = '$id'";
+
+		$result = $mysqli->query($myQuery);
+
+		$_SESSION['alert'] = "Doktor başarıyla düzenlendi";
+
+		header("Location:doktor.php?id=$id");
+		exit;
+
+	}
+
+
+
+	if($action=="deletedoctor"){
+
+		$id = $_POST['id'];
+
+		$myQuery = "DELETE FROM doctor WHERE `id` = '$id'";
+
+		$mysqli->query($myQuery);
+
+		$_SESSION['alert'] = "Doktor başarıyla silindi";
+
+		header("Location:doktorlar.php");
+		exit;
 
 	}
 

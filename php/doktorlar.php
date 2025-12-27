@@ -1,5 +1,5 @@
 <?PHP
-	ob_start();
+	session_start(); ob_start();
 
 	// veri tabanı bağlantı bilgilerini tanımlıyoruz
 	$DbHost		= "mysql";
@@ -55,6 +55,12 @@
 		</div>
 	</header>
 
+	<hr>
+
+	<?PHP if(isset($_SESSION['alert'])){?>
+	<div class="alert alert-success" role="alert"> <?=$_SESSION['alert'];?> </div>
+	<?PHP unset($_SESSION['alert']); } ?>
+
 	<h2>DOKTORLAR</h2>
 	<hr>
 
@@ -91,7 +97,7 @@ $result = $mysqli->query($myQuery);
 <?PHP while($rs = mysqli_fetch_array($result)){?>
 			<tr>
 				<th scope="row"><?=$rs['id'];?></th>
-				<td><?PHP echo $rs['name'];?></td>
+				<td><a href="doktor.php?id=<?=$rs['id'];?>"><?PHP echo $rs['name'];?></a></td>
 				<td><?=$rs['mail'];?></td>
 				<td><?=$rs['phone'];?></td>
 				<td><?=$rs['description'];?></td>
