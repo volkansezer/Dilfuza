@@ -71,7 +71,9 @@
 
 <table class="table table-sm table-striped  table-hover">
 <?PHP
-    $tarih = new DateTime();
+    //$tarih = new DateTime();
+
+    $tarih		= mktime(0, 0, 0, date("m",time()), date("d",time())-1, date("Y",time()));
 
    // $tarih = mktime(0,0,0,$now->mont)
 
