@@ -1,31 +1,11 @@
 <?PHP
-	session_start(); ob_start();
-
-	// veri tabanı bağlantı bilgilerini tanımlıyoruz
-	$DbHost		= "mysql";
-	$DbUser		= "admindilfuza";
-	$DbPass		= "dilfuzakarimova";
-	$DbName		= "hastaneotomasyon";
-
-	//vertabanına bağlanıyoruz
-	$mysqli = new mysqli($DbHost, $DbUser, $DbPass, $DbName);
-
-	//bağlantı kurulamazsa hata dönüyoruz
-	if($mysqli->connect_errno){
-		printf("Bağlantı Hatası: %s\n", $mysqli->connect_error);
-		exit();
-	}
-	
-	//bağlantı sağlandı, dil formatını UTF8 olarak tanımlıyoruz
-	mysqli_query($mysqli ,"SET NAMES UTF8"); 
-
-    ?>
-
+	require_once("config.php");
+?>
 
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Hastane Otomasyon</title>
+		<title><?=_SiteName;?></title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -36,29 +16,8 @@
 	<body>
 
 
-
-	<header class="p-3 text-bg-dark">
-		<div class="container">
-			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-					<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-						<use xlink:href="#bootstrap"></use></svg>
-				</a>
-				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="uzmanliklar.php" class="nav-link px-2 text-white">Uzmanlıklar</a></li>
-					<li><a href="doktorlar.php" class="nav-link px-2 text-white">Doktorlar</a></li>
-					<li><a href="hastalar.php" class="nav-link px-2 text-white">Hastalar</a></li>
-				</ul>
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-					<input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-				</form>
-				<div class="text-end">
-					<button type="button" class="btn btn-outline-light me-2">Login</button>
-					<button type="button" class="btn btn-warning">Sign-up</button>
-				</div>
-			</div>
-		</div>
-	</header>
+	<!-- her sayfada aynı olacak olan "header"ı tek bir yerde tanımlayıp include ediyoruz -->
+	<?PHP include("inc_header.php");?>
 
 	<hr>
 
