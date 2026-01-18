@@ -2,7 +2,7 @@
 
 	//ayarları yaptığımız config dosyasını çağırıyoruz
 	//require_once "1 kere çağır" demek, birden fazla çağırırsak ilk olanı işleme alacak
-	require_once("config.php");
+	require_once("inc_config.php");
 
 
 	$action = $_POST['action'];
@@ -17,8 +17,8 @@
 	if($action=='adddoctor'){
 		echo 'doktor eklenecek<br>';
 
-		$doctorname = $_POST['doctorname'];
-		$doctormail = $_POST['doctormail'];
+		$doctorname = p('doctorname'); //$_POST['doctorname'];
+		$doctormail = g('doctormail'); //$_POST['doctormail'];
 		$password = $_POST['password'];
 		$phone = $_POST['phone'];
 		$description = $_POST['description'];

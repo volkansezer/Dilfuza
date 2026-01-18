@@ -21,10 +21,10 @@
 			<h1 class="h3 mb-3 font-weight-normal"><?=_SiteName;?></h1>
 
 			<label for="username" class="sr-only">Kullanıcı adı</label>
-			<input type="text" id="username" name="username" class="form-control" placeholder="Kullanıcı adı..." required autocomplete="off" autofocus>
+			<input type="text" id="username" name="username" class="form-control" placeholder="Kullanıcı adı..." autocomplete="off" autofocus>
 
 			<label for="password" class="sr-only">Parola</label>
-			<input type="password" id="password" name="password" class="form-control" placeholder="Parola..." required>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Parola...">
 			
 			
 			<button class="btn btn-lg btn-primary btn-block" type="submit">GİRİŞ</button>
