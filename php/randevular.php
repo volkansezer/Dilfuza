@@ -1,7 +1,7 @@
 <?PHP
 	require_once("config.php");
-	$name = "Dilfuza";
 ?>
+
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -14,12 +14,11 @@
 
 	</head>
 	<body>
-
+	
+	
 	<!-- her sayfada aynı olacak olan "header"ı tek bir yerde tanımlayıp include ediyoruz -->
 	<?PHP include("inc_header.php");?>
 
-	<div class="container">
-		<h2>ANA SAYFA</h2>
-	</div>
+	
 	</body>
 </html>

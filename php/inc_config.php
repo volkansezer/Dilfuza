@@ -11,10 +11,10 @@
 	$DbName		= "hastaneotomasyon";
 
     //web server database settings
-    $DbHost		= "localhost";
-    $DbName		= "volkansezer";
-    $DbUser		= "sezervolkan";
-    $DbPass		= "Tamirci!34";
+    //$DbHost		= "localhost";
+    //$DbName		= "volkansezer";
+    //$DbUser		= "sezervolkan";
+    //$DbPass		= "Tamirci!34";
 
 	//vertabanına bağlanıyoruz
 	$mysqli = new mysqli($DbHost, $DbUser, $DbPass, $DbName);
@@ -31,4 +31,23 @@
 
     $sitename = "Hastane Otomasyon"; //değiştirilebilir tanımalma
     const _SiteName = "Hastane Otomasyon"; //değiştirilemez tanımlama
+	const _CopyRight = "2026";
+
+
+	
+	function g($data){
+		if(!isset($_GET[$data])){return false;}
+		$data = trim($_GET[$data]);
+		$data = strip_tags($data);
+		return $data;
+	}
+
+	function p($data){
+		if(!isset($_POST[$data])){return false;}
+		$data = trim($_POST[$data]);
+		$data = strip_tags($data);
+		return $data;
+	}
+
+
 ?>
