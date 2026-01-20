@@ -8,10 +8,14 @@
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="randevular.php" class="nav-link px-2 text-white">Randevular</a></li>	
 					<li><a href="hastalar.php" class="nav-link px-2 text-white">Hastalar</a></li>
-					<li><a href="uzmanliklar.php" class="nav-link px-2 text-white">Uzmanlıklar</a></li>
+					<li><a href="slotlar.php" class="nav-link px-2 text-white">Slotlar</a></li>
 					<li><a href="doktorlar.php" class="nav-link px-2 text-white">Doktorlar</a></li>
-					<li><a href="doktorlar.php" class="nav-link px-2 text-white">Yeni Menü</a></li>
+					<li><a href="uzmanliklar.php" class="nav-link px-2 text-white">Uzmanlıklar</a></li>
+					
+					<li><a href="personel.php" class="nav-link px-2 text-white">Personel</a></li>
+					<li><a href="logout.php" class="nav-link px-2 text-white">Çıkış</a></li>
 				</ul>
+				<!--
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
 					<input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
 				</form>
@@ -19,6 +23,7 @@
 					<button type="button" class="btn btn-outline-light me-2">Login</button>
 					<button type="button" class="btn btn-warning">Sign-up</button>
 				</div>
+				-->
 			</div>
 		</div>
 	</header>
