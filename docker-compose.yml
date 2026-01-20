@@ -2,12 +2,9 @@ services:
 
   php:
     container_name: PHP
-    restart: always
-    #build: .
-    
-    image: volkansezer/phpmysqli  # kurulumdan sonra Terminalde aç docker-php-ext-install mysqli komutunu çalıştır
-    #image: php:8.2-apache
-    #command: docker-php-ext-install mysqli
+    restart: always #always, no, on-failure, unless-stopped
+    image: php:8.2-apache
+    command: docker-php-ext-install mysqli # çalışmazsa, kurulumdan sonra Terminalde aç docker-php-ext-install mysqli komutunu çalıştır
 
     volumes:
       - "./php/:/var/www/html" # sync the current dir on local machine to the dir of container
@@ -17,9 +14,7 @@ services:
   mysql:
     container_name: MySQL
     image: mysql:8.3
-    #command: --default-authentication-plugin=mysql_native_password
-    #command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
-    restart: always #always, no, on-failure, unless-stopped
+    restart: always
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
@@ -39,7 +34,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8090:80
+      - 2222:80
     environment:
       PMA_ARBITRARY: 1
       UPLOAD_LIMIT: 300M
