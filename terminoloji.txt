@@ -19,6 +19,8 @@ DOCKER
 
 
 
-ayağa kaldırma
-
-docker-compose up -d
+Projeyi ayağa kaldırma
+# Terminal Ctrl+"
+docker-compose up -d #compose dosyasını çalıştırır
+docker-compose down #buradan çalıştırdığımız container'ları durduruyor
+cls #yazıları mesajları siler
