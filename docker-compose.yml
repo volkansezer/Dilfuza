@@ -3,8 +3,9 @@ services:
   php:
     container_name: PHP
     restart: always #always, no, on-failure, unless-stopped
-    image: php:8.2-apache
-    command: docker-php-ext-install mysqli # çalışmazsa, kurulumdan sonra Terminalde aç docker-php-ext-install mysqli komutunu çalıştır
+    image: volkansezer/phpmysqli
+    #image: php:8.4-fpm-alpine
+    #command: docker-php-ext-install mysqli # çalışmazsa, kurulumdan sonra Terminalde aç docker-php-ext-install mysqli komutunu çalıştır
 
     volumes:
       - "./php/:/var/www/html" # sync the current dir on local machine to the dir of container
