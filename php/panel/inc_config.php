@@ -10,12 +10,6 @@
 	$DbPass		= "dilfuzakarimova";
 	$DbName		= "hastaneotomasyon";
 
-	//web server database settings
-	//$DbHost		= "localhost";
-	//$DbName		= "volkansezer";
-	//$DbUser		= "sezervolkan";
-	//$DbPass		= "Tamirci!34";
-
 	//vertabanına bağlanıyoruz
 	$mysqli = new mysqli($DbHost, $DbUser, $DbPass, $DbName);
 
