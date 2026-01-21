@@ -30,13 +30,30 @@
 	<h2>RANDEVULAR</h2>
 	<hr>
 
+	<?PHP
+$myQuery = "select d.*, s.specialization from doctor as d inner join specialization as s on s.id=d.specialization";
+$result = $mysqli->query($myQuery);
+?>
+<form action="randevular.php" method="get">
+<select name="doctor">
+	<option value="">-TÜMÜNÜ DOKTORLAR-</option>
+	<?PHP while($rs = mysqli_fetch_array($result)){?>
+	<option value="<?=$rs['id'];?>" <?=($rs['id']==g('doctor'))?"selected":"";?>><?=$rs['name'];?> - <?=$rs['specialization'];?></option>
+	<?PHP } ?>
+</select>
+<button type="submit">LİSTELE</button>
+</form>
+		
+	<hr>
+
+
 	<table class="table table-striped  table-hover">
 		<thead>
 			<tr>
 			<th scope="col">#</th>
 			<th scope="col">Randevu Tarihi</th>
 			<th scope="col">Hasta</th>
-			<th scope="col">Klilik</th>
+			<th scope="col">Klinik</th>
 			<th scope="col">Doktor</th>
 			<th scope="col">Durum</th>
 			<th scope="col">Oluşturma Tarihi</th>
@@ -44,11 +61,13 @@
 		</thead>
 		<tbody>
 <?PHP
+$doctor = g('doctor');
 $myQuery = "select a.*, p.name as p_name, s.specialization, d.name as d_name from appointment as a
 				inner join patient as p on p.id=a.patient
 				inner join doctor as d on d.id=a.doctor
 				inner join specialization as s on s.id=d.specialization
 			where a.timeslot>= CURRENT_TIMESTAMP() ";
+if($doctor!=''){$myQuery .= "and a.doctor='$doctor'";}
 $result = $mysqli->query($myQuery);
 ?>
 
