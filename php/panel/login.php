@@ -1,5 +1,5 @@
 <?PHP
-	require_once("inc_config.php");
+	require_once("../inc_config.php");
 
 	if(isset($_SESSION['user']) && isset($_SESSION['user']['id']) && isset($_SESSION['user']['login'])){$_SESSION['alert'] = ['primary' => 'Giriş yapılmış...']; header("Location:index.php"); exit;}
 ?>

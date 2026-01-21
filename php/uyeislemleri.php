@@ -95,16 +95,7 @@
 ===================== -->
 <?PHP include('inc_header.php');?>
 
-<!-- =====================
-     HERO
-===================== -->
-<div class="container">
-  <div class="hero text-center">
-    <h1 class="fw-bold">İLETİŞİM</h1>
-    <p class="lead mt-3">Uzman doktor kadromuz ile yanınızdayız</p>
-    <button class="btn btn-light btn-lg mt-3">Randevu Al</button>
-  </div>
-</div>
+
 
 <!-- =====================
      DOCTORS + FORM
@@ -112,62 +103,78 @@
 <div class="container">
   <div class="row g-4">
 
-    <!-- Doktorlar -->
-    <div class="col-lg-8">
-      <div class="row g-4">
+    
+   
 
-        <div class="col-md-6">
-          <div class="card doctor-card shadow-sm">
-            <img src="Nova Care_files/doktorresimleri/istockphoto-2158610739-1024x1024.jpg" class="card-img-top img-fluid">
-            <div class="card-body">
-              <h5 class="card-title">Dr. Ahmet Yılmaz</h5>
-              <p class="text-muted">Kardiyoloji Uzmanı</p>
-              <button class="btn btn-primary btn-sm">Detay</button>
-            </div>
-          </div>
+    <!-- Form -->
+    <div class="col-lg-6">
+      <div class="appointment-form">
+        <form action="girisyap.php" method="post">
+        <h5 class="mb-3">Giriş Yap</h5>
+
+        <div class="form-floating mb-3">
+          <input type="text" name="email" class="form-control" placeholder="E-Posta" required>
+          <label>E-Posta</label>
         </div>
 
-        <div class="col-md-6">
-          <div class="card doctor-card shadow-sm">
-            <img src="Nova Care_files/doktorresimleri/istockphoto-1633320190-1024x1024 (1).jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Dr. Ayşe Demir</h5>
-              <p class="text-muted">Dahiliye Uzmanı</p>
-              <button class="btn btn-primary btn-sm">Detay</button>
-            </div>
-          </div>
+        <div class="form-floating mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Parola" required>
+          <label>Parola</label>
         </div>
 
+        <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+
+        </form>
       </div>
     </div>
 
-    <!-- Form -->
-    <div class="col-lg-4">
-      <div class="appointment-form">
-        <h5 class="mb-3">Randevu Oluştur</h5>
+
+    <!-- Doktorlar -->
+    <div class="col-lg-6">
+        <div class="appointment-form">
+          <form action="uyeol.php" method="post">
+        <h5 class="mb-3">Hesap Oluştur</h5>
+
+         <div class="form-floating mb-3">
+          <input type="text" name="email" class="form-control" placeholder="E-Posta" required>
+          <label>E-Posta</label>
+        </div>
 
         <div class="form-floating mb-3">
-          <input class="form-control" placeholder="Ad Soyad">
+          <input type="password" name="password" class="form-control" placeholder="Parola" required>
+          <label>Parola</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text" name="name" class="form-control" placeholder="Ad Soyad" required>
           <label>Ad Soyad</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="tel" class="form-control" placeholder="Telefon">
+          <input type="tel" name="phone" class="form-control" placeholder="Telefon">
           <label>Telefon</label>
         </div>
 
         <div class="form-floating mb-3">
-          <select class="form-select">
-            <option>Kardiyoloji</option>
-            <option>Dahiliye</option>
-            <option>Ortopedi</option>
-          </select>
-          <label>Uzmanlık</label>
+          <input type="text" name="address" class="form-control" placeholder="Adress">
+          <label>Adress</label>
         </div>
 
-        <button class="btn btn-primary w-100">Randevu Al</button>
+        <div class="form-floating mb-3">
+          <input type="number" min="1900" max="2026" step="1" name="birthyear" class="form-control" placeholder="Doğum yılı" required>
+          <label>Doğum Yılı</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text" name="relative" class="form-control" placeholder="Hasta Yakını">
+          <label>Hasta Yakını</label>
+        </div>
+
+        <button class="btn btn-primary w-100">Hesap Oluştur</button>
+        </form>
       </div>
     </div>
+    
 
   </div>
 </div>
