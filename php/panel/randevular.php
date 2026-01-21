@@ -1,7 +1,7 @@
 <?PHP
 	require_once("../inc_config.php");
-?>
 
+?>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -14,11 +14,60 @@
 
 	</head>
 	<body>
-	
-	
+
+
 	<!-- her sayfada aynı olacak olan "header"ı tek bir yerde tanımlayıp include ediyoruz -->
 	<?PHP include("inc_header.php");?>
 
-	
+	<hr>
+
+	<?PHP if(isset($_SESSION['alert'])){?>
+	<div class="alert alert-success" role="alert"> <?=$_SESSION['alert'];?> </div>
+	<?PHP unset($_SESSION['alert']); } ?>
+
+	<div class="container">
+
+	<h2>RANDEVULAR</h2>
+	<hr>
+
+	<table class="table table-striped  table-hover">
+		<thead>
+			<tr>
+			<th scope="col">#</th>
+			<th scope="col">Randevu Tarihi</th>
+			<th scope="col">Hasta</th>
+			<th scope="col">Klilik</th>
+			<th scope="col">Doktor</th>
+			<th scope="col">Durum</th>
+			<th scope="col">Oluşturma Tarihi</th>
+			</tr>
+		</thead>
+		<tbody>
+<?PHP
+$myQuery = "select a.*, p.name as p_name, s.specialization, d.name as d_name from appointment as a
+				inner join patient as p on p.id=a.patient
+				inner join doctor as d on d.id=a.doctor
+				inner join specialization as s on s.id=d.specialization
+			where a.timeslot>= CURRENT_TIMESTAMP() ";
+$result = $mysqli->query($myQuery);
+?>
+
+<?PHP while($rs = mysqli_fetch_array($result)){?>
+			<tr>
+				<th scope="row"><?=$rs['id'];?></th>
+				<td><?=$rs['timeslot'];?></td>
+				<td><?=$rs['p_name'];?></td>
+				<td><?=$rs['specialization'];?></td>
+				<td><?=$rs['d_name'];?></td>
+				<td><?=$rs['status']?"AKTİF":"PASİF";?></td>
+				<td><?=$rs['createdtime'];?></td>
+			</tr>
+<?PHP } ?>
+
+		</tbody>
+	</table>
+
+
+<div>
 	</body>
 </html>
