@@ -1,0 +1,13 @@
+FROM php:8.2-apache
+
+# Install required dependencies and extensions
+RUN apt-get update && \
+    apt-get install -y libmariadb-dev \
+    && docker-php-ext-install mysqli pdo_mysql \
+    && docker-php-ext-enable mysqli pdo_mysql
+
+# Enable Apache rewrite module (optional, common for PHP apps)
+RUN a2enmod rewrite
+
+# Set working directory
+WORKDIR /var/www/html
