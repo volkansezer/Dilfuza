@@ -64,12 +64,12 @@ $pInfo = mysqli_fetch_assoc($mysqli->query("SELECT * FROM patient WHERE id='$pat
             <div class="bg-primary bg-opacity-10 p-2 rounded-3 me-3">
                 <i class="fa-solid fa-calendar-plus text-primary"></i>
             </div>
-            <h5 class="mb-0 fw-bold">Yeni Randevu Al</h5>
+            <h5 class="mb-0 fw-bold">Doktordan Görüş Al</h5>
         </div>
 
-        <form action="randevu_onay.php" method="post">
+        <form action="gorusal_kaydet.php" method="post">
           <div class="row g-3">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label small fw-bold text-muted">Poliklinik Seçiniz</label>
                 <select name="specialization" required class="form-select" onchange="git('hesabim.php?klinik='+this.value);">
                     <option value="">- Klinik Seçiniz -</option>
@@ -82,9 +82,9 @@ $pInfo = mysqli_fetch_assoc($mysqli->query("SELECT * FROM patient WHERE id='$pat
                 </select>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label small fw-bold text-muted">Doktor Seçimi</label>
-                <select name="doctor" required class="form-select" onchange="git('hesabim.php?klinik=<?=g('klinik');?>&doktor='+this.value);">
+                <select name="doctor" required class="form-select">
                     <?PHP if(g('klinik')){ ?>
                         <option value="">- Doktor Seçiniz -</option>
                         <?PHP 
@@ -95,53 +95,21 @@ $pInfo = mysqli_fetch_assoc($mysqli->query("SELECT * FROM patient WHERE id='$pat
                             echo "<option value='{$ds['id']}' $selected>Dr. {$ds['name']}</option>";
                         } ?>
                     <?PHP } else { ?>
-                        <option value="">Lütfen Önce poliklinik seçin</option>
+                        <option value="">Önce poliklinik seçin</option>
                     <?PHP } ?>
                 </select>
             </div>
 
-            <div class="col-md-4">
-                <label class="form-label small fw-bold text-muted">Tarih Seçimi</label>
-                <select name="tarih" required class="form-select" onchange="git('hesabim.php?klinik=<?=g('klinik');?>&doktor=<?=g('doktor');?>&tarih='+this.value);">
-                    <option value="">- Tarih Seçiniz -</option>
-                    <?PHP 
-                    $tarih_obj = new DateTime(); 
-                    for ($i = 0; $i <= 10; $i++) { 
-                        $tarih_obj->modify('+1 day'); 
-                        $val = $tarih_obj->format('Y-m-d'); 
-                        $dis = ($tarih_obj->format('N') >= 6) ? "disabled" : ""; 
-                        $sel = ($val == g('tarih')) ? "selected" : "";
-                        echo "<option value='$val' $sel $dis>".$tarih_obj->format('d.m.Y')."</option>";
-                    } ?>
-                </select>
+            <div class="col-md-12">
+                <label class="form-label small fw-bold text-muted">Derdini Yaz</label>
+                <textarea name="story" required class="form-select"></textarea>
             </div>
 
-            <?PHP if(g('klinik') && g('doktor') && g('tarih')){ ?>
-            <div class="col-12 mt-4 text-center">
-                <label class="form-label small fw-bold text-muted d-block mb-3">Uygun Randevu Saatleri</label>
-                <div class="slot-container justify-content-center">
-                    <?PHP 
-                    $t1 = g('tarih');
-                    $doktor_id = g('doktor');
-                    $slotlar = [];
-                    $querySlotlar = $mysqli->query("SELECT timeslot FROM timeslot WHERE doctor='$doktor_id' AND timeslot LIKE '$t1%' AND status=1");
-                    while($ss = mysqli_fetch_array($querySlotlar)){ $slotlar[] = date("H:i", strtotime($ss['timeslot'])); }
-                    
-                    $calisma_saatleri = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00'];
-                    foreach($calisma_saatleri as $saat){ 
-                        $isDisabled = in_array($saat, $slotlar) ? "" : "disabled";
-                    ?>
-                        <input type="radio" class="btn-check" name="timeslot" id="st<?=$saat;?>" value="<?=$saat;?>" <?=$isDisabled;?> required>
-                        <label class="btn btn-outline-primary px-4 rounded-pill" for="st<?=$saat;?>"><?=$saat;?></label>
-                    <?PHP } ?>
-                </div>
-                <div class="mt-5">
-                    <button type="submit" class="btn btn-primary btn-appointment shadow px-5">
-                        <i class="fa-solid fa-check-circle me-2"></i> Randevuyu Tamamla
-                    </button>
-                </div>
+             <div class="col-md-4">
+                <button type="submit">KAYDET</button>
             </div>
-            <?PHP } ?>
+
+           
           </div>
         </form>
       </div>
@@ -197,6 +165,5 @@ $pInfo = mysqli_fetch_assoc($mysqli->query("SELECT * FROM patient WHERE id='$pat
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- CopyRight Dilfuza Hanım -->
 </body>
 </html>
